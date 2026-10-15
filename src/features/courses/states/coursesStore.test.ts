@@ -166,7 +166,7 @@ describe("coursesStore", () => {
 
   describe("actions", () => {
     it("asyncSetIsCourseAdd success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postCourse").mockResolvedValue({} as any);
       await coursesStore.asyncSetIsCourseAdd("a", "a");
       expect(ok).toHaveBeenCalledWith("Kursus berhasil ditambahkan!");
@@ -175,7 +175,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseAdd failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postCourse").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseAdd("a", "a");
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -184,7 +184,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseChange success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putCourse").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsCourseChange(1, "a", "a");
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -193,14 +193,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseChange success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putCourse").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsCourseChange(1, "a", "a");
       expect(ok).toHaveBeenCalledWith("Kursus berhasil diubah!");
     });
 
     it("asyncSetIsCourseChange failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putCourse").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseChange(1, "a", "a");
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -209,7 +209,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseChangeCover success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postCourseCover").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsCourseChangeCover(1, new File(["x"], "c.jpg"));
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -218,14 +218,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseChangeCover success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postCourseCover").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsCourseChangeCover(1, new File(["x"], "c.jpg"));
       expect(ok).toHaveBeenCalledWith("Cover kursus berhasil diubah!");
     });
 
     it("asyncSetIsCourseChangeCover failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postCourseCover").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseChangeCover(1, new File(["x"], "c.jpg"));
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -234,7 +234,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseDelete success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteCourse").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsCourseDelete(1);
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -243,14 +243,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseDelete success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteCourse").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsCourseDelete(1);
       expect(ok).toHaveBeenCalledWith("Kursus berhasil dihapus!");
     });
 
     it("asyncSetIsCourseDelete failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteCourse").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseDelete(1);
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -259,7 +259,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseDeleteAll success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteAllCourses").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsCourseDeleteAll();
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -268,14 +268,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseDeleteAll success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteAllCourses").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsCourseDeleteAll();
       expect(ok).toHaveBeenCalledWith("Semua kursus berhasil dihapus!");
     });
 
     it("asyncSetIsCourseDeleteAll failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteAllCourses").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseDeleteAll();
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -284,7 +284,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseJoin success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postStudent").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsCourseJoin(1);
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -293,14 +293,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseJoin success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postStudent").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsCourseJoin(1);
       expect(ok).toHaveBeenCalledWith("Berhasil bergabung ke kursus!");
     });
 
     it("asyncSetIsCourseJoin failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postStudent").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseJoin(1);
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -309,7 +309,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseLeave success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteStudent").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsCourseLeave(1);
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -318,14 +318,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseLeave success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteStudent").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsCourseLeave(1);
       expect(ok).toHaveBeenCalledWith("Berhasil keluar dari kursus!");
     });
 
     it("asyncSetIsCourseLeave failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteStudent").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseLeave(1);
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -334,7 +334,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseRating success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putRating").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsCourseRating(1, 5, "a");
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -343,14 +343,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsCourseRating success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putRating").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsCourseRating(1, 5, "a");
       expect(ok).toHaveBeenCalledWith("Rating berhasil disimpan!");
     });
 
     it("asyncSetIsCourseRating failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putRating").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsCourseRating(1, 5, "a");
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -359,7 +359,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentAdd success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postContent").mockResolvedValue({} as any);
       await coursesStore.asyncSetIsContentAdd(1, "a", "a");
       expect(ok).toHaveBeenCalledWith("Konten berhasil ditambahkan!");
@@ -368,7 +368,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentAdd failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postContent").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsContentAdd(1, "a", "a");
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -377,7 +377,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentChange success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putContent").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsContentChange(1, "a", "a");
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -386,14 +386,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentChange success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putContent").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsContentChange(1, "a", "a");
       expect(ok).toHaveBeenCalledWith("Konten berhasil diubah!");
     });
 
     it("asyncSetIsContentChange failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "putContent").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsContentChange(1, "a", "a");
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -402,7 +402,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentDelete success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteContent").mockResolvedValue("Pesan API" as any);
       await coursesStore.asyncSetIsContentDelete(1);
       expect(ok).toHaveBeenCalledWith("Pesan API");
@@ -411,14 +411,14 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentDelete success with default message", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteContent").mockResolvedValue("" as any);
       await coursesStore.asyncSetIsContentDelete(1);
       expect(ok).toHaveBeenCalledWith("Konten berhasil dihapus!");
     });
 
     it("asyncSetIsContentDelete failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "deleteContent").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsContentDelete(1);
       expect(err).toHaveBeenCalledWith("Gagal");
@@ -427,7 +427,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentStatusChange success", async () => {
-      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation(() => {} as any);
+      const ok = vi.spyOn(toolsHelper, "showSuccessDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postContentStatus").mockResolvedValue({} as any);
       await coursesStore.asyncSetIsContentStatusChange(1, 1);
       expect(ok).not.toHaveBeenCalled();
@@ -436,7 +436,7 @@ describe("coursesStore", () => {
     });
 
     it("asyncSetIsContentStatusChange failure", async () => {
-      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation(() => {} as any);
+      const err = vi.spyOn(toolsHelper, "showErrorDialog").mockImplementation((() => {}) as any);
       vi.spyOn(courseApi, "postContentStatus").mockRejectedValue(new Error("Gagal"));
       await coursesStore.asyncSetIsContentStatusChange(1, 1);
       expect(err).toHaveBeenCalledWith("Gagal");

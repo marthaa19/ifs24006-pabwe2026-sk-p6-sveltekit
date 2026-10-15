@@ -18,7 +18,7 @@ describe("apiHelper", () => {
   it("should fetch data without query and append Authorization header when token exists", async () => {
     apiHelper.putAccessToken("test-token");
     const mockFetch = vi.fn().mockResolvedValue({ status: 200 } as any);
-    global.fetch = mockFetch;
+    globalThis.fetch = mockFetch;
 
     await apiHelper.fetchData("http://localhost:8765/api/v1/users/", {
       method: "GET",
@@ -37,7 +37,7 @@ describe("apiHelper", () => {
 
   it("should handle url with query parameters and without trailing slash correctly", async () => {
     const mockFetch = vi.fn().mockResolvedValue({ status: 200 } as any);
-    global.fetch = mockFetch;
+    globalThis.fetch = mockFetch;
 
     await apiHelper.fetchData("http://localhost:8765/api/v1/todos?is_finished=1", {
       method: "GET",
