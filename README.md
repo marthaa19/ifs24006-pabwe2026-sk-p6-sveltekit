@@ -24,3 +24,9 @@ Buka /users, /profile, dan path acak (mis. /abc) untuk melihat halaman 404.
 Port aplikasi: 3000 (`APP_PORT` di `.env`; dipakai juga oleh adapter-bun saat `bun start`).
 Jalankan: `bun x vitest run src/features/courses`
 Tahap ini belum menambah tampilan; daftar kursus muncul di Tahap 6.
+
+## Tahap 6 - Kerangka tampilan (Navbar, Sidebar, CourseLayout)
+
+Jalankan: `bun x vitest run src/features/courses src/App.test.ts`
+Setelah login, semua halaman (kecuali /auth) dibungkus CourseLayout: navbar ber-logo topi wisuda, sidebar "Semua Kursus / Semua Pengguna / Profil Saya".
+Halaman `/` masih placeholder; daftar kursus muncul di Tahap 7.

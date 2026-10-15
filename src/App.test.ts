@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { createRawSnippet } from "svelte";
 import { renderWithProviders } from "./test-utils";
+import { mockGoto } from "./setupTests";
 import apiHelper from "./helpers/apiHelper";
 import { usersStore } from "./features/users/states/usersStore";
 
@@ -30,19 +31,48 @@ describe("Routes", () => {
   });
 
   describe("+layout.svelte", () => {
-    it("should render children when provided", () => {
+    it("should render children directly on auth routes", () => {
       const { wrapper } = renderWithProviders(RootLayout, {
         props: { children: childSnippet },
+        route: "/auth/login",
       });
 
       expect(wrapper.find('[data-testid="route-child"]').exists()).toBe(true);
       expect(wrapper.text()).toContain("Isi Halaman");
+      expect(wrapper.text()).not.toContain("Semua Kursus");
     });
 
-    it("should render nothing when children is not provided", () => {
-      const { wrapper } = renderWithProviders(RootLayout);
+    it("should render nothing on auth routes when children is not provided", () => {
+      const { wrapper } = renderWithProviders(RootLayout, { route: "/auth/login" });
 
       expect(wrapper.find('[data-testid="route-child"]').exists()).toBe(false);
+    });
+
+    it("should wrap other routes with course layout when user is logged in", () => {
+      vi.spyOn(apiHelper, "getAccessToken").mockReturnValue("token");
+      vi.spyOn(usersStore, "asyncSetProfile").mockImplementation(() => Promise.resolve());
+
+      const { wrapper } = renderWithProviders(RootLayout, {
+        props: { children: childSnippet },
+        route: "/users",
+        preloadedState: { profile: { id: 1, name: "Test User", email: "test@delcom.org" } },
+      });
+
+      expect(wrapper.text()).toContain("Delcom Courses");
+      expect(wrapper.text()).toContain("Semua Kursus");
+      expect(wrapper.find('[data-testid="route-child"]').exists()).toBe(true);
+    });
+
+    it("should redirect to login on other routes when there is no session", () => {
+      vi.spyOn(apiHelper, "getAccessToken").mockReturnValue(null);
+      mockGoto.mockClear();
+
+      renderWithProviders(RootLayout, {
+        props: { children: childSnippet },
+        route: "/users",
+      });
+
+      expect(mockGoto).toHaveBeenCalledWith("/auth/login");
     });
   });
 
