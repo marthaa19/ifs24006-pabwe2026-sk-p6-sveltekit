@@ -4,6 +4,7 @@ import { renderWithProviders } from "./test-utils";
 import { mockGoto } from "./setupTests";
 import apiHelper from "./helpers/apiHelper";
 import { usersStore } from "./features/users/states/usersStore";
+import { coursesStore } from "./features/courses/states/coursesStore";
 
 import RootLayout from "./routes/+layout.svelte";
 import RootPage from "./routes/+page.svelte";
@@ -13,6 +14,8 @@ import LoginRoute from "./routes/auth/login/+page.svelte";
 import RegisterRoute from "./routes/auth/register/+page.svelte";
 import UsersRoute from "./routes/users/+page.svelte";
 import ProfileRoute from "./routes/profile/+page.svelte";
+import CourseDetailRoute from "./routes/courses/[courseId]/+page.svelte";
+import ContentRoute from "./routes/courses/[courseId]/contents/[contentId]/+page.svelte";
 import { ssr } from "./routes/+layout";
 
 const childSnippet = createRawSnippet(() => ({
@@ -77,10 +80,12 @@ describe("Routes", () => {
   });
 
   describe("+page.svelte", () => {
-    it("should render home page title", () => {
+    it("should render course list home page", () => {
+      vi.spyOn(coursesStore, "asyncSetCourses").mockImplementation(() => Promise.resolve());
       const { wrapper } = renderWithProviders(RootPage);
 
-      expect(wrapper.text()).toContain("Delcom Courses");
+      expect(wrapper.text()).toContain("Semua Kursus");
+      expect(coursesStore.asyncSetCourses).toHaveBeenCalledWith(false);
     });
   });
 
@@ -143,6 +148,32 @@ describe("Routes", () => {
       });
 
       expect(wrapper.text()).toContain("Memuat data profil...");
+    });
+  });
+
+  describe("courses/[courseId]/+page.svelte", () => {
+    it("should render the course detail page using the route param", async () => {
+      const load = vi.spyOn(coursesStore, "asyncSetCourse").mockImplementation(() => Promise.resolve());
+      const { wrapper } = renderWithProviders(CourseDetailRoute, {
+        route: "/courses/5",
+        params: { courseId: "5" },
+      });
+      await new Promise((r) => setTimeout(r, 20));
+      expect(load).toHaveBeenCalledWith("5");
+      expect(wrapper.text()).toContain("Semua Kursus");
+    });
+  });
+
+  describe("courses/[courseId]/contents/[contentId]/+page.svelte", () => {
+    it("should render the content page using the route params", async () => {
+      const load = vi.spyOn(coursesStore, "asyncSetContent").mockImplementation(() => Promise.resolve());
+      const { wrapper } = renderWithProviders(ContentRoute, {
+        route: "/courses/5/contents/11",
+        params: { courseId: "5", contentId: "11" },
+      });
+      await new Promise((r) => setTimeout(r, 20));
+      expect(load).toHaveBeenCalledWith("11");
+      expect(wrapper.text()).toContain("Kembali ke Kursus");
     });
   });
 });

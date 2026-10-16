@@ -50,6 +50,7 @@ export interface RenderWithProvidersOptions {
   props?: Record<string, any>;
   preloadedState?: Record<string, any>;
   route?: string;
+  params?: Record<string, string>;
   pinia?: any;
   [key: string]: any;
 }
@@ -60,6 +61,7 @@ export function renderWithProviders(
     props = {},
     preloadedState = {},
     route = "/",
+    params = {},
     ...options
   }: RenderWithProvidersOptions = {}
 ) {
@@ -68,7 +70,7 @@ export function renderWithProviders(
     const url = new URL(route, "http://localhost:3000");
     updateMockPage({
       url,
-      params: {},
+      params,
       route: { id: url.pathname },
       status: 200,
       error: null,

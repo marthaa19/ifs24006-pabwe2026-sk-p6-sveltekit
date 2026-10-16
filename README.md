@@ -29,4 +29,24 @@ Tahap ini belum menambah tampilan; daftar kursus muncul di Tahap 6.
 
 Jalankan: `bun x vitest run src/features/courses src/App.test.ts`
 Setelah login, semua halaman (kecuali /auth) dibungkus CourseLayout: navbar ber-logo topi wisuda, sidebar "Semua Kursus / Semua Pengguna / Profil Saya".
-Halaman `/` masih placeholder; daftar kursus muncul di Tahap 7.
+Halaman `/` menampilkan daftar kursus (cari, filter "Kursus saya", tambah, hapus).
+
+## Tahap 7 - Detail Kursus
+
+Jalankan: `bun x vitest run src/features/courses src/App.test.ts`
+Buka `/courses/<id>` (klik kartu kursus di beranda):
+- Tampilan umum: sampul, judul, deskripsi, penulis, jumlah konten/peserta, rata-rata rating, daftar konten, daftar ulasan.
+- Pemilik kursus (user_id sama dengan id profil): Ubah Data (`ChangeModal`), Ubah Sampul (`ChangeCoverModal`), tambah/ubah/hapus konten (`ContentModal`). Antarmuka pemilik didahulukan bila pemilik sekaligus peserta.
+- Peserta: Keluar dari Kursus, progres belajar, dan form rating 1-5 + ulasan.
+- Bukan peserta: tombol Gabung Kursus.
+- Tautan konten mengarah ke `/courses/<id>/contents/<contentId>` (halaman materi dibuat di Tahap 8).
+- `test-utils.ts`: `renderWithProviders` kini menerima opsi `params` untuk parameter rute.
+
+## Tahap 8 - Materi (Konten)
+
+Jalankan: `bun x vitest run src/features/courses src/helpers src/App.test.ts`
+Buka `/courses/<id>/contents/<contentId>` (klik judul konten di halaman detail):
+- Pemutar YouTube (iframe embed) dari tautan konten. Tautan `watch`, `youtu.be`, `embed`, `shorts`, dan `live` diterima; tautan lain menampilkan peringatan beserta tautan aslinya (`src/helpers/youtubeHelper.ts`).
+- Tombol "Tandai Selesai" / "Tandai Belum Selesai" mengirim status 1 atau 0 lalu memuat ulang materi.
+- Tautan "Kembali ke Kursus" mengarah ke `/courses/<id>`.
+

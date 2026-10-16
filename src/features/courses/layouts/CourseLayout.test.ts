@@ -3,6 +3,7 @@ import CourseLayout from "./CourseLayout.svelte";
 import { renderWithProviders } from "../../../test-utils";
 import apiHelper from "../../../helpers/apiHelper";
 import { mockGoto } from "../../../setupTests";
+import { usersStore as realUsersStore } from "../../users/states/usersStore";
 
 describe("CourseLayout", () => {
   beforeEach(() => {
@@ -24,6 +25,7 @@ describe("CourseLayout", () => {
 
   it("should render layout with navbar and sidebar when profile is present and handle sidebar toggling & logout", async () => {
     vi.spyOn(apiHelper, "getAccessToken").mockReturnValue("valid-token");
+    vi.spyOn(realUsersStore, "asyncSetProfile").mockImplementation(() => Promise.resolve());
 
     const { wrapper, authStore } = renderWithProviders(CourseLayout, {
       preloadedState: {
@@ -67,6 +69,7 @@ describe("CourseLayout", () => {
 
   it("should stay on page when isProfile is triggered and profile exists", async () => {
     vi.spyOn(apiHelper, "getAccessToken").mockReturnValue("valid-token");
+    vi.spyOn(realUsersStore, "asyncSetProfile").mockImplementation(() => Promise.resolve());
 
     const { wrapper, usersStore } = renderWithProviders(CourseLayout, {
       preloadedState: {
