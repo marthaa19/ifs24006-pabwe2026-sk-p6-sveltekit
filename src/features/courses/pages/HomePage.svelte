@@ -90,7 +90,7 @@
       <input type="checkbox" data-testid="only-mine-checkbox" bind:checked={onlyMine} onchange={loadCourses} class="rounded border-slate-300 text-indigo-600" />
       Kursus saya
     </label>
-    <span class="text-xs font-semibold text-slate-500 px-3 py-1 bg-slate-100 rounded-lg sm:ml-auto">{totalLabel}</span>
+    <span class="text-xs font-semibold text-slate-700 px-3 py-1 bg-slate-100 rounded-lg sm:ml-auto">{totalLabel}</span>
   </div>
 
   {#if loading && filtered.length === 0}

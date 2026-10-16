@@ -47,11 +47,13 @@
 
   {#if loading}
     <div class="py-16 text-center" data-testid="loading-content">
+      <h1 class="sr-only">Materi Kursus</h1>
       <LoaderCircle size={36} class="mx-auto text-indigo-600 animate-spin mb-2" />
       <p class="font-medium text-slate-600">Memuat materi...</p>
     </div>
   {:else if !content}
     <div class="py-16 text-center text-slate-500" data-testid="content-not-found">
+      <h1 class="sr-only">Materi Kursus</h1>
       <p class="font-bold text-slate-700">Materi tidak ditemukan.</p>
     </div>
   {:else}

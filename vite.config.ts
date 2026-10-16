@@ -14,6 +14,8 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       sveltekit({
+        // CSS di-inline ke HTML supaya tidak menjadi render-blocking resource
+        inlineStyleThreshold: 100000,
         // Di Vercel (env VERCEL=1) pakai adapter-vercel; selain itu tetap adapter-bun.
         adapter: process.env.VERCEL
           ? adapterVercel()

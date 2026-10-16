@@ -132,11 +132,13 @@
 
   {#if loading}
     <div class="py-16 text-center" data-testid="loading-course">
+      <h1 class="sr-only">Detail Kursus</h1>
       <LoaderCircle size={36} class="mx-auto text-indigo-600 animate-spin mb-2" />
       <p class="font-medium text-slate-600">Memuat kursus...</p>
     </div>
   {:else if !course}
     <div class="py-16 text-center text-slate-500" data-testid="course-not-found">
+      <h1 class="sr-only">Detail Kursus</h1>
       <p class="font-bold text-slate-700">Kursus tidak ditemukan.</p>
     </div>
   {:else}
